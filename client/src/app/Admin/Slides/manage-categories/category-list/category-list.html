@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-3">
+        <h5 class="card-title">{{cat.Name}}</h5>
+      </div>
+      <div class="col-sm-3">
+        <p class="card-text">{{cat.Description}}</p>
+      </div>
+      <div class="col-sm-3">
+        <p class="card-text">{{cat.YearTaken}}</p>
+      </div>
+      <div class="col-sm-3">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+          class="btn btn-secondary"
+          style="float: right"
+          (click)="editCategory(cat.Id)"
+        >
+          Edit
+        </button>
+          <button
+          class="btn btn-warning"
+          style="float: right"
+          (click)="deleteCategory(cat.Id)"
+        >
+          Delete
+        </button>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

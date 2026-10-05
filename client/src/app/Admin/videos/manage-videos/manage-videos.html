@@ -1,0 +1,79 @@
+
+<div class="card">
+    <form>
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>Manage Videos</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <select name="category" id="2" class="form-control" [(ngModel)]="category">
+                                        <option value=1>1 - Action</option>
+                                        <option value=2>2 - Family</option>
+                                        <option value=3>3 - Drama</option>
+                                        <option value=4>4 - Horror</option>
+                                        <option value=5>5 - Romance</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button class="btn btn-primary" style="float: right;"
+                                        (click)="getVideosByCategory()">Search</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-secondary" style="float: right;" (click)="addVideo()"
+                        *ngIf="!showAddPage()">Add
+                        Video</button>
+
+                </div>
+
+            </div>
+
+            <div class="card-body" *ngIf="!showAddPage()">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Title</th>
+                            <th>File Path</th>
+                            <th>Category</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of listOfVideos">
+                            <td>{{t.id}}</td>
+                            <td>{{t.title}}</td>
+                            <td>{{t.filePath}}</td>
+                            <td>{{t.category}}</td>
+                            <td>{{t.duration}}</td>
+                            <td>
+                                <button class="btn btn-primary me-2" (click)="editVideo(t.id)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-body" *ngIf="showAddPage()">
+                <div class="row">
+                    <app-add-video></app-add-video>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+</div>  

@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-sm-6"><h6>Videos ...</h6></div>
+
+      <div class="col-sm-6">
+        <div class="btn-group float-end" role="group" aria-label="Basic example">
+          
+          <button class="btn btn-success" (click)="backToArray()">
+          <i class="fa fa-chevron-up"></i>
+        </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (videoService.paginatedResult(); as result) {
+
+<div class="row">
+  @for (t of result.items; track t.id) {
+  <div class="col-3">
+    <app-video-details [video]="t"></app-video-details>
+  </div>
+  }
+</div>
+
+<!-- @if (videoService.paginatedResult(); as result) {
+<div class="d-flex justify-content-center mt-2">
+  <pagination
+    [(ngModel)]="pageNumber"
+    name="pageNumber"
+    [boundaryLinks]="true"
+    [totalItems]="videoService.paginatedResult()?.pagination?.totalItems ?? 9"
+    [itemsPerPage]="videoService.paginatedResult()?.pagination?.itemsPerPage ?? 2"
+    [maxSize]="5"
+    (pageChanged)="pageChanged($event)"
+  >
+  </pagination>
+</div>} -->
+ }

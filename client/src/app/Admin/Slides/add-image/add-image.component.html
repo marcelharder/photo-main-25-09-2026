@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <span class="badge bg-secondary fs-5 px-3 py-2">Adding an image</span>
+    </div>
+    <div class="card body">
+      <form [formGroup]="addImageForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Image URL</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter image URL"
+            formControlName="ImageUrl"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter location"
+            formControlName="Location"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Year Taken</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter year taken"
+            formControlName="YearTaken"
+          />
+        </div><div class="mb-3">
+          <label class="form-label">Familie</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter family"
+            formControlName="Familie"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Quality</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter quality"
+            formControlName="Quality"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Series</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Series"
+            formControlName="Series"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Spare 1</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter spare 1"
+            formControlName="Spare1"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Spare 2</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter spare 2"
+            formControlName="Spare2"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Spare 3</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter spare 3"
+            formControlName="Spare3"
+          />
+        </div>
+        
+
+        <button type="submit" class="btn btn-primary">Add Image</button>
+        <button type="button" class="btn btn-danger" (click)="Cancel()">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

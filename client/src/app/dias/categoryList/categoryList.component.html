@@ -1,0 +1,35 @@
+
+<form #categoryListForm="ngForm" id="pwdForm">
+
+ <div class="row">
+  @for (t of catservice.paginatedResult()?.items; track t.Id){
+  <div class="col-sm-4">
+
+   <app-categoryDetails [selectedCategory]="t"></app-categoryDetails>
+
+  </div>
+  }
+</div> 
+
+@if(catservice.paginatedResult()?.pagination){
+  <div class="d-flex justify-content-center mt-2">
+    <div *ngIf="catservice.paginatedResult()?.pagination!.totalItems > 0">
+     <pagination 
+      [boundaryLinks]="true"
+      [(ngModel)]="pageNumber"
+      name="pageNumber"
+      [totalItems]="catservice.paginatedResult()?.pagination!.totalItems"
+      [itemsPerPage]="catservice.paginatedResult()?.pagination!.itemsPerPage"
+      (pageChanged)="pageChanged($event)"
+      [maxSize]="10"
+    ></pagination>
+    </div>
+  
+  </div>
+}
+
+</form>
+ 
+
+  
+

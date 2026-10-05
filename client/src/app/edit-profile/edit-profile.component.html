@@ -1,0 +1,98 @@
+<form #userPasswordChangeForm="ngForm" id="pwdForm" novalidate>
+  <div class="container mt-2">
+    <div class="card">
+      <div class="card-header">
+        <span class="label label-primary">Change password</span>
+        <span style="float: right;">{{ pwd.Email }}</span>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">Current password</div>
+          <div class="col-sm-6">
+            <input
+              type="password"
+              id="opd"
+              name="oldpwd"
+              [(ngModel)]="pwd.CurrentPassword"
+              #oldpwd="ngModel"
+              required
+              class="form-control" />
+            <div class="text-danger" *ngIf="oldpwd.invalid && oldpwd.touched">
+              Current password is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-sm-6">New password</div>
+          <div class="col-sm-6">
+            <input
+              type="password"
+              id="newopd"
+              name="newpwd"
+              [(ngModel)]="pwd.Password"
+              #newpwd="ngModel"
+              required
+              minlength="6"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$"
+              class="form-control" />
+
+            <div class="text-danger" *ngIf="newpwd.touched && newpwd.errors?.['required']">
+              New password is required.
+            </div>
+            <div class="text-danger" *ngIf="newpwd.touched && newpwd.errors?.['minlength']">
+              Password must be at least 6 characters.
+            </div>
+            <div class="text-danger" *ngIf="newpwd.touched && newpwd.errors?.['pattern']">
+              Password must contain at least one uppercase letter, one lowercase letter,
+              one number, and one special character.
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-sm-6">Confirm new password</div>
+          <div class="col-sm-6">
+            <input
+              type="password"
+              id="confopd"
+              name="confpwd"
+              [(ngModel)]="pwd.ConfirmPassword"
+              #confpwd="ngModel"
+              required
+              class="form-control" />
+
+            <div class="text-danger" *ngIf="confpwd.touched && confpwd.errors?.['required']">
+              Confirm password is required.
+            </div>
+            <div class="text-danger"
+                 *ngIf="confpwd.touched && pwd.Password && pwd.ConfirmPassword && pwd.Password !== pwd.ConfirmPassword">
+              Password confirmation does not match.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="row mt-2">
+          <div class="col-sm-6">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-danger" (click)="Cancel()">Cancel</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                [disabled]="userPasswordChangeForm.invalid || pwd.Password !== pwd.ConfirmPassword"
+                (click)="Update()">
+                Update
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

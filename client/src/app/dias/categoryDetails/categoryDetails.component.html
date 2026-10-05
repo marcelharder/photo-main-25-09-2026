@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-sm-8"><h6>{{selectedCategory.Id}} - {{ selectedCategory.Description }}</h6></div>
+      <div class="col-sm-4"> <button class="btn btn-primary btn-sm" style="float: right;" (click)="goDetails(selectedCategory.Id)">Details</button></div>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <img
+      [src]="getImageFromServer(selectedCategory.MainPhoto.toString())"
+      alt="image slide"
+      style="display: block; width: 100%; height: 200px"
+    />
+  </div>
+</div>

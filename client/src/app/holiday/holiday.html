@@ -1,0 +1,70 @@
+
+
+<div *ngIf="showMainPageFlag">  
+<div class="row">
+  @for (holiday of holidays_paginated.items; track holiday) {
+  <div class="col-3">
+    <div class="card">
+      <div class="card-header"><h5>{{ holiday.title }}</h5></div>
+      <div class="card-body">
+        <h5>{{ holiday.description }}</h5>
+        <img [src]="getImageFromServer(holiday.id)" alt="no image" class="holiday-image"/>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button
+            class="btn btn-success"
+            style="float: right"
+            (click)="showLocations(holiday.id)"
+          >
+            Locations
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  }
+</div>
+</div>
+
+
+<div *ngIf="showLocationsFlag">
+<div class="row">
+  @for (GalleryLocation of locationsList; track GalleryLocation) {
+  <div class="col-3">
+    <div class="card">
+      <div class="card-header"><h5>{{ GalleryLocation.name }}</h5></div>
+      <div class="card-body">
+        <h5>{{ GalleryLocation.description }}</h5>
+        <img [src]="getImageFromServer(GalleryLocation.id)" alt="no image" class="holiday-image"/>
+      </div>
+      <div class="row"> 
+        <div class="col-12">
+          <button
+            class="btn btn-success"
+            style="float: right"
+            (click)="showLocationDetails(GalleryLocation.id)"
+          >
+            Pictures
+          </button>
+        </div>
+ </div>
+ </div>
+
+ 
+</div>
+  }
+</div>
+
+
+
+<div *ngIf="showLocationDetailsFlag">
+
+<div class="row">
+  <div class="col-12">
+    pictures for a location
+    </div>
+   
+</div>
+</div>

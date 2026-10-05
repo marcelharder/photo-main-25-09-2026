@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h4><span>Adding a new video</span></h4>
+    </div>
+    <div class="card-body">
+      <form
+        *ngIf="addVideoForm"
+        [formGroup]="addVideoForm"
+        (ngSubmit)="onSubmit()"
+        #formDir="ngForm"
+      >
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" formControlName="title" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Naam Video(mp4)</label>
+          <input type="text" class="form-control" formControlName="filePath" placeholder="test.mp4"/>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">ThumbnailPath</label>
+          <input type="text" class="form-control" formControlName="thumbnailPath" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Duration</label>
+          <input type="text" class="form-control" formControlName="duration" placeholder="hh:min:sec" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select
+            name="category"
+            id="2"
+            class="form-control"
+            formControlName="category"
+          >
+            <option value="1">1 - Action</option>
+            <option value="2">2 - Family</option>
+            <option value="3">3 - Drama</option>
+            <option value="4">4 - Horror</option>
+            <option value="5">5 - Romance</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            rows="3"
+          ></textarea>
+        </div>
+<div class="btn-group" role="group" aria-label="Basic example">
+ 
+  <button type="button" class="btn btn-primary" (click)="Cancel()">Cancel</button>
+  <button
+          type="submit"
+          class="btn btn-danger"
+          [disabled]="!addVideoForm.valid"
+        >
+          Add Video
+        </button>
+</div>
+
+        
+      </form>
+    </div>
+  </div>
+</div>

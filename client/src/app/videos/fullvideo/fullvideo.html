@@ -1,0 +1,14 @@
+<div class="container mt-3">
+  <button class="btn btn-secondary mb-3" (click)="backToVideoList()">
+    Back
+  </button>
+
+  @if (videoUrl()) {
+  <div class="video-container">
+    <video controls>
+      <source [src]="videoUrl()!" type="video/mp4" />
+    </video>
+  </div>
+
+  }
+</div>

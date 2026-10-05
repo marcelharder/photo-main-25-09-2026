@@ -1,0 +1,53 @@
+
+<form #userDetailsForm="ngForm" id="detailsForm">
+
+
+<div class="card">
+    <div class="card-header"><H4><span>User details</span></H4></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">Name</div>
+            <div class="col-sm-8"><input type=text name="name" [(ngModel)]="us!.UserName" class="form-control" id="1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">Created</div>
+            <div class="col-sm-8"><input 
+                type=text
+                 name="gender" 
+                 [ngModel]="us!.Created | date:'dd/MMMM/YYYY'"
+                 class="form-control" 
+                 id="2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">Email</div>
+            <div class="col-sm-8"><input type=text name="email" [(ngModel)]="us!.Email" class="form-control" id="3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">Mobile</div>
+            <div class="col-sm-8"><input type=text name="phone" [(ngModel)]="us!.PhoneNumber" class="form-control" id="4"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">Photos</div>
+            <div class="col-sm-8"><textarea name="allowPhotos" [(ngModel)]="PhotoallowedToSeeString" class="form-control" id="5"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">Videos</div>
+            <div class="col-sm-8"><textarea name="allowVideos" [(ngModel)]="VideoallowedToSeeString" class="form-control" id="16"></textarea></div>
+        </div>
+       
+        <div class="row mt-2">
+            <div class="col-sm-6">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-danger" (click)="deleteUser()">Delete</button>
+                    <button type="button" class="btn btn-secondary" (click)="editUser()">Update</button>
+                  </div>
+            </div>
+            <div class="col-sm-6"></div>
+        </div>
+    </div>
+</div>
+
+</form>
+
+
+

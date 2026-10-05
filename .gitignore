@@ -1,0 +1,33 @@
+# Build output and dependency caches
+**/bin/
+**/obj/
+**/Release/
+**/node_modules/
+**/.angular/
+**/dist/
+*.lscache
+
+# Local configuration and infrastructure details
+api/appsettings*.json
+api/docker-compose.yml
+api/wwwroot/
+api/data/seed/UserSeedData.json
+.vscode/
+
+# Local packages, logs, and personal media
+*.deb
+/server-*.log
+*.[jJ][pP][gG]
+*.[jJ][pP][eE][gG]
+*.[pP][nN][gG]
+*.[gG][iI][fF]
+*.[wW][eE][bB][pP]
+*.[aA][vV][iI][fF]
+*.[hH][eE][iI][cC]
+*.[mM][pP]4
+*.[mM][oO][vV]
+*.[aA][vV][iI]
+
+# Operating system files
+.DS_Store
+Thumbs.db

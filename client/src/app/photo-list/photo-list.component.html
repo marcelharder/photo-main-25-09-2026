@@ -1,0 +1,22 @@
+<div class="row">
+    @for (t of imageService.paginatedResult()?.items; track t.Id){
+    <div class="col-2">
+  
+      <app-dias-details [dia]="t"></app-dias-details>
+  
+    </div>
+    }
+  </div>
+  
+  @if(imageService.paginatedResult()?.pagination){
+    <div class="d-flex justify-content-center mt-2">
+      <pagination 
+        [boundaryLinks]="true"
+        [totalItems]="imageService.paginatedResult()?.pagination!.totalItems"
+        [itemsPerPage]="imageService.paginatedResult()?.pagination!.itemsPerPage"
+        (pageChanged)="pageChanged($event)"
+        [maxSize]="10"
+      ></pagination>
+    
+    </div>
+  }

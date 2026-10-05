@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fotoservice", "api\fotoservice.csproj", "{B5D5B590-F74B-64B2-571A-816ED66E8525}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5D5B590-F74B-64B2-571A-816ED66E8525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D5B590-F74B-64B2-571A-816ED66E8525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D5B590-F74B-64B2-571A-816ED66E8525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D5B590-F74B-64B2-571A-816ED66E8525}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F97B7AF0-3B04-485B-B72E-00DD5605D883}
+	EndGlobalSection
+EndGlobal

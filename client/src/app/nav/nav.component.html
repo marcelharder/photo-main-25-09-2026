@@ -1,0 +1,186 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <!-- nav.component.html (or any component template) -->
+  <div *ngIf="isMobile; else desktopVersion">
+    <!-- This block is rendered only when isMobile === true -->
+    <div class="container-fluid">
+      @if (accountService.currentUser()) {
+        <div dropdown class="dropdown">
+          <a
+            dropdownToggle
+            class="dropdown-toggle text-light text-decoration-none"
+            >Welcome {{ currentUserName }}</a
+          >
+          <div *dropdownMenu class="dropdown-menu">
+            <a
+              routerLink="/editProfile"
+              routerLinkActive="active"
+              class="nav-link"
+            >
+              Change password</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </div>
+      }
+      @if (!accountService.currentUser()) {
+        <form
+          #loginForm="ngForm"
+          (submit)="login()"
+          class="d-flex"
+          autocomplete="off"
+        >
+          <input
+            name="username"
+            [(ngModel)]="model.username"
+            class="form-control me-2"
+            placeholder="Username"
+          />
+          <input
+            name="password"
+            [(ngModel)]="model.password"
+            class="form-control me-2"
+            placeholder="Password"
+            type="password"
+          />
+          <button class="btn btn-outline-success" type="submit">Login</button>
+        </form>
+      }
+    </div>
+  </div>
+
+  <ng-template #desktopVersion>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Family photo's</a>
+
+      @if (accountService.currentUser()) {
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a routerLink="/" routerLinkActive="active" class="nav-link"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/categoryList"
+              routerLinkActive="active"
+              class="nav-link"
+              >Slides</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/photoList"
+              routerLinkActive="active"
+              class="nav-link"
+              >Slides featuring me</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/tapeList" routerLinkActive="active" class="nav-link"
+              >Tapes</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/videoList"
+              routerLinkActive="active"
+              class="nav-link"
+              >Videos</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              routerLink="/holidayList"
+              routerLinkActive="active"
+              class="nav-link"
+              >Holidays</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/about" routerLinkActive="active" class="nav-link"
+              >About</a
+            >
+          </li>
+        </ul>
+
+}
+      
+
+      @if (accountService.currentUser()?.IsAdmin) {
+        <div dropdown class="dropdown">
+          <a
+            dropdownToggle
+            class="dropdown-toggle text-light text-decoration-none"
+            >Manage</a
+          >
+          <div *dropdownMenu class="dropdown-menu">
+            <a
+              routerLink="/manageCategories"
+              routerLinkActive="active"
+              class="nav-link"
+              >manage Categories</a
+            >
+            <a
+              routerLink="/dashboard"
+              routerLinkActive="active"
+              class="nav-link"
+              >manage users</a
+            >
+            <a
+              routerLink="/manageVideos"
+              routerLinkActive="active"
+              class="nav-link"
+              >manage videos</a
+            >
+          </div>
+        </div>
+      }
+
+      @if (accountService.currentUser()) {
+        <div dropdown class="dropdown">
+          <a
+            dropdownToggle
+            class="dropdown-toggle text-light text-decoration-none"
+            >Welcome {{ currentUserName }}</a
+          >
+          <div *dropdownMenu class="dropdown-menu">
+            <a
+              routerLink="/editProfile"
+              routerLinkActive="active"
+              class="nav-link"
+            >
+              Change password</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </div>
+      }
+      @if (!accountService.currentUser()) {
+        <form
+          #loginForm="ngForm"
+          (submit)="login()"
+          class="d-flex"
+          autocomplete="off"
+        >
+          <input
+            name="username"
+            [(ngModel)]="model.username"
+            class="form-control me-2"
+            placeholder="Username"
+          />
+          <input
+            name="password"
+            [(ngModel)]="model.password"
+            class="form-control me-2"
+            placeholder="Password"
+            type="password"
+          />
+          <button class="btn btn-outline-success" type="submit">Login</button>
+        </form>
+      }
+    </div>
+  </ng-template>
+</nav>

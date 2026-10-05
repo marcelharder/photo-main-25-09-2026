@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h4><span>Updating a video</span></h4>
+    </div>
+    <div class="card-body">
+      <form
+        *ngIf="updateVideoForm"
+        [formGroup]="updateVideoForm"
+        (ngSubmit)="onSubmit()"
+        #formDir="ngForm"
+      >
+        <div class="mb-3">
+          <label class="form-label">Id</label>
+          <input type="text" class="form-control" formControlName="id" readonly/>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" formControlName="title" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Naam Video(mp4)</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="filePath"
+            placeholder="test.mp4"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">ThumbnailPath</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="thumbnailPath"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Duration</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="duration"
+            placeholder="hh:min:sec"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Video</button>
+        <button type="button" class="btn btn-danger" (click)="Cancel()">
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

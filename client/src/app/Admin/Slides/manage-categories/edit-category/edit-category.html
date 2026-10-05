@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <span class="badge bg-secondary fs-5 px-3 py-2">Updating a category</span>
+      <button
+        class="btn btn-secondary float-end"
+        (click)="addImage()"
+      >
+        Add Image
+      </button>
+    </div>
+    <div class="card-body">
+      <form
+        *ngIf="updateCategoryForm"
+        [formGroup]="updateCategoryForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="mb-3">
+          <label class="form-label">Id</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Id"
+            readonly
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" 
+          class="form-control" 
+          placeholder="Enter category name" 
+          formControlName="Name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Description"
+            placeholder="Enter category description"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Year Taken</label>
+          <select class="form-control" formControlName="YearTaken">
+            <option value="">Select a year</option>
+            <option *ngFor="let year of years" [value]="year">
+              {{ year }}
+            </option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Main Photo</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="MainPhoto"
+            placeholder="Enter main photo URL"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Number of Images</label>
+          <input
+            type="number"
+            class="form-control"
+            formControlName="Number_of_images"
+            placeholder="Enter number of images"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Update Category</button>
+        <button type="button" class="btn btn-danger" (click)="Cancel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
+         
