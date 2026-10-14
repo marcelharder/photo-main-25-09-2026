@@ -1,70 +1,98 @@
-
-
-<div *ngIf="showMainPageFlag">  
-<div class="row">
-  @for (holiday of holidays_paginated.items; track holiday) {
-  <div class="col-3">
-    <div class="card">
-      <div class="card-header"><h5>{{ holiday.title }}</h5></div>
-      <div class="card-body">
-        <h5>{{ holiday.description }}</h5>
-        <img [src]="getImageFromServer(holiday.id)" alt="no image" class="holiday-image"/>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <button
-            class="btn btn-success"
-            style="float: right"
-            (click)="showLocations(holiday.id)"
-          >
-            Locations
-          </button>
+<div *ngIf="showMainPageFlag">
+  <div class="row">
+    @for (holiday of holidays_paginated.items; track holiday.id) {
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header"><h5>{{ holiday.title }}</h5></div>
+        <div class="card-body">
+          <h5>{{ holiday.description }}</h5>
+          <img
+            *ngIf="getHolidayImageUrl(holiday) as imageUrl"
+            [src]="imageUrl"
+            [alt]="holiday.title"
+            class="holiday-image"
+          />
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-success"
+              style="float: right"
+              (click)="showLocations(holiday.id)"
+            >
+              Locations
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    }
   </div>
-
-  }
 </div>
-</div>
-
 
 <div *ngIf="showLocationsFlag">
-<div class="row">
-  @for (GalleryLocation of locationsList; track GalleryLocation) {
-  <div class="col-3">
-    <div class="card">
-      <div class="card-header"><h5>{{ GalleryLocation.name }}</h5></div>
-      <div class="card-body">
-        <h5>{{ GalleryLocation.description }}</h5>
-        <img [src]="getImageFromServer(GalleryLocation.id)" alt="no image" class="holiday-image"/>
-      </div>
-      <div class="row"> 
-        <div class="col-12">
-          <button
-            class="btn btn-success"
-            style="float: right"
-            (click)="showLocationDetails(GalleryLocation.id)"
-          >
-            Pictures
-          </button>
+  <button class="btn btn-secondary mb-3" (click)="showHolidayList()">
+    Back to holidays
+  </button>
+  <div class="row">
+    @for (location of locationsList; track location.id) {
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header"><h5>{{ location.name }}</h5></div>
+        <div class="card-body">
+          <h5>{{ location.description }}</h5>
+          <img
+            *ngIf="getLocationImageUrl(location) as imageUrl"
+            [src]="imageUrl"
+            [alt]="location.name"
+            class="holiday-image"
+          />
         </div>
- </div>
- </div>
-
- 
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-success"
+              style="float: right"
+              (click)="showLocationDetails(location.id)"
+            >
+              Pictures
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
 </div>
-  }
-</div>
-
-
 
 <div *ngIf="showLocationDetailsFlag">
+  <button class="btn btn-secondary mb-3" (click)="showLocationList()">
+    Back to locations
+  </button>
+  <h2>{{ selectedLocation?.name }}</h2>
+  <p>{{ selectedLocation?.description }}</p>
+  <div class="row">
+    @for (image of imagesList; track image.id) {
+    <div class="col-3">
+      <div class="card">
+        <div class="card-img-wrapper">
 
-<div class="row">
-  <div class="col-12">
-    pictures for a location
+          <img
+            *ngIf="getGalleryImageUrl(image) as imageUrl"
+            [src]="imageUrl"
+            [alt]="image.caption || selectedLocation?.name || 'Holiday photo'"
+            class="holiday-image card-img-top"
+          />
+          <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item">
+              <button class="btn btn-primary" (click)="getImageFull(image.id)">
+                <i class="fa fa-user"></i>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-   
-</div>
+    }
+  </div>
 </div>

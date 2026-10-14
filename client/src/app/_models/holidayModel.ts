@@ -8,6 +8,7 @@ export interface GalleryLocation {
   id: number;
   name: string;
   description?: string;
+  coverImageUrl?: string;
   latitude?: number;
   longitude?: number;
   images: GalleryImage[];

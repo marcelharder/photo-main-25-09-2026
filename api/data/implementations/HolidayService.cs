@@ -156,19 +156,23 @@ public class HolidayService : IHolidayService
     int id,
     CancellationToken cancellationToken = default)
 {
+    if (string.IsNullOrWhiteSpace(_comSettings.HolidayContainerUrl))
+    {
+        throw new InvalidOperationException("HolidayContainerUrl is not configured.");
+    }
 
     var url = $"{_comSettings.HolidayContainerUrl.TrimEnd('/')}/api/location-images/{id}";
 
-    //var url = $"{GetBaseUrl()}/api/location-images/{id}";
-
-    var response = await _httpClient.GetAsync(
+    using var response = await _httpClient.GetAsync(
         url,
         HttpCompletionOption.ResponseHeadersRead,
         cancellationToken);
 
     response.EnsureSuccessStatusCode();
 
-    var stream = await response.Content.ReadAsStreamAsync(cancellationToken);
+    var stream = new MemoryStream();
+    await response.Content.CopyToAsync(stream, cancellationToken);
+    stream.Position = 0;
 
     var contentType =
         response.Content.Headers.ContentType?.MediaType

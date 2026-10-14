@@ -25,6 +25,7 @@ import { EditCategory } from './Admin/Slides/manage-categories/edit-category/edi
 import { AddImageComponent } from './Admin/Slides/add-image/add-image.component';
 import { Holiday } from './holiday/holiday';
 import { holidayResolver } from './_resolvers/holidayResolver';
+import { Fullholidayimage } from './holiday/fullholidayimage/fullholidayimage';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +49,7 @@ export const routes: Routes = [
   { path: 'editCategory/:id', component: EditCategory},
   { path: 'addImage/:id', component: AddImageComponent},
   { path: 'holidayList', component: Holiday, resolve:{hr: holidayResolver}},
+  { path: 'holidayfullimage/:id', component: Fullholidayimage},
   
  
   

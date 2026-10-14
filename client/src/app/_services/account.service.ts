@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { categoryModel } from '../_models/categoryModel';
 import { PasswordUpdate } from '../_models/PasswordUpdate';
+import { GalleryImage } from '../_models/holidayModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AccountService {
   http = inject(HttpClient);
   baseUrl = environment.apiUrl;
   currentUser = signal<User | null>(null);
+  HolidayImageArray = signal<GalleryImage[] | null>(null);
   CatArray = signal<categoryModel[] | null>(null);
   currentPageNumber = signal<number>(1);
   currentDiaListNo = signal<number>(1);
