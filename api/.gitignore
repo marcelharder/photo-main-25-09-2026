@@ -4,3 +4,5 @@ appsettings.Development.json
 **/bin
 **/obj
 **/sql-22-12-2022.tar
+docker-compose.yaml
+sixlabors.lic

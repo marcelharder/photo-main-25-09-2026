@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 COPY Release App/
 WORKDIR /App
 

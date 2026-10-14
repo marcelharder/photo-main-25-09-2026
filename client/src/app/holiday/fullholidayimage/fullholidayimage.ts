@@ -65,8 +65,8 @@ export class Fullholidayimage implements OnInit {
   showRightButton(): boolean {
     var lastImageId = this.listOfImages.length > 0 ? this.listOfImages[this.listOfImages.length - 1].id : 1;
     return this.id < lastImageId;
-  }  
-  
+  }
+
   backToHolidayList(): void {
     this.accountService.HolidayImageArray.set(null); // clear the image array in the service
     // navigate back to the holiday list page
