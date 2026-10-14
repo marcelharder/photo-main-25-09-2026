@@ -27,6 +27,7 @@ import { Holiday } from './holiday/holiday';
 import { holidayResolver } from './_resolvers/holidayResolver';
 import { Fullholidayimage } from './holiday/fullholidayimage/fullholidayimage';
 import { ListOfHolidaysComponent } from './Admin/Holidays/list-of-holidays/list-of-holidays.component';
+import { AddHoliday } from './Admin/Holidays/add-holiday/add-holiday';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,7 +52,7 @@ export const routes: Routes = [
   { path: 'addImage/:id', component: AddImageComponent},
   { path: 'holidayList', component: Holiday, resolve:{hr: holidayResolver}},
   { path: 'holidayfullimage/:id', component: Fullholidayimage},
-  
+  { path: 'adminHolidayList', component: ListOfHolidaysComponent, resolve:{hr: holidayResolver}},
  
   
   { path: '**', component: HomeComponent, pathMatch: 'full'}

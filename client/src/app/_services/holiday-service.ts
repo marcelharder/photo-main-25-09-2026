@@ -25,6 +25,10 @@ export class HolidayService {
     return `${this.baseUrl}Holiday/getImage/${id}`;
   }
 
+  deleteHoliday(id: number) {
+    return this.http.delete<number>(`${this.baseUrl}deleteHoliday/${id}`);
+  }
+
 
 
 

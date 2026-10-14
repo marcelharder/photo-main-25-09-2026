@@ -37,12 +37,23 @@ public class HolidayService : IHolidayService
         return await response.Content.ReadAsStringAsync(cancellationToken);
     }
 
-    public async Task DeleteHoliday(int id)
+    public async Task<int> DeleteHoliday(int id)
     {
-        using var response = await _httpClient.DeleteAsync(
-            $"{GetBaseUrl()}/api/holidays/{id}",
-            CancellationToken.None);
-        response.EnsureSuccessStatusCode();
+        if (string.IsNullOrWhiteSpace(_comSettings.HolidayContainerUrl))
+    {
+        throw new InvalidOperationException("HolidayContainerUrl is not configured.");
+    }
+
+    var url = $"{_comSettings.HolidayContainerUrl.TrimEnd('/')}/api/deleteHoliday/{id}";
+
+    using var response = await _httpClient.DeleteAsync(
+        url,
+        HttpCompletionOption.ResponseHeadersRead,
+        cancellationToken);
+
+    response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadAsStringAsync(cancellationToken);
     }
 
     public async Task<HolidayPageDto?> GetAllHolidays(

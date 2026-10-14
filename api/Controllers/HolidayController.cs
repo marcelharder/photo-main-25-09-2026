@@ -66,6 +66,34 @@ public class HolidayController : ControllerBase
         }
     }
 
+    [HttpDelete("deleteHoliday/{id}")]
+    public async Task<IActionResult> DeleteHoliday(
+    int id,
+    CancellationToken cancellationToken)
+    {
+       try
+        {
+            var result = await _holidayService.DeleteHoliday(id, cancellationToken);
+
+            return result;
+        }
+        catch (HttpRequestException ex) when (
+            ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            return NotFound();
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.HasValue)
+        {
+            return StatusCode((int)ex.StatusCode.Value, ex.Message);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode(
+                StatusCodes.Status503ServiceUnavailable,
+                $"Holiday service unavailable: {ex.Message}");
+        } 
+    }
+
 
 
 
