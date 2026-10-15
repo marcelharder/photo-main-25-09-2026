@@ -6,6 +6,7 @@ import { CarouselModel } from '../_models/CarouselModel';
 import { catParams } from '../_models/catParams';
 import { PaginatedResult } from '../_models/pagination';
 import { imgParams } from '../_models/imgParams';
+import { NasImageEntry } from '../_models/nasImageEntry';
 
 @Injectable({
   providedIn: 'root',
@@ -99,6 +100,19 @@ export class ImageService {
   }
   getSpecificFileFromId(id: string) {
     return this.http.get<slideModel>(this.baseUrl + 'Images/findImage/' + id);
+  }
+
+  browseNasImages(directory: string) {
+    const params = new HttpParams().set('directory', directory);
+    return this.http.get<NasImageEntry[]>(this.baseUrl + 'Images/browseNasImages', { params });
+  }
+
+  getNasImagePreviewUrl(path: string) {
+    const params = new HttpParams().set('path', path);
+    return this.http.get(this.baseUrl + 'Images/nasImagePreview', {
+      params,
+      responseType: 'blob',
+    });
   }
 
    createImage(sm: slideModel) {

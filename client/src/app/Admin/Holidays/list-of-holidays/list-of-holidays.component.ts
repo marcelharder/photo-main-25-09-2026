@@ -5,11 +5,12 @@ import { NgFor, NgIf } from '@angular/common';
 import { HolidayService } from '../../../_services/holiday-service';
 import { Holiday } from '../../../_models/holidayModel';
 import { ToastrService } from 'ngx-toastr';
+import { addHoliday } from '../add-holiday/add-holiday';
 
 @Component({
   selector: 'app-list-of-holidays',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, addHoliday],
   templateUrl: './list-of-holidays.component.html',
   styleUrl: './list-of-holidays.component.css',
 })
@@ -18,6 +19,7 @@ export class ListOfHolidaysComponent implements OnInit {
   private router = inject(Router);
   private holidayService = inject(HolidayService);
   private listOfHolidays: Holiday[] = [];
+  addPage = 0;
 
   toast = inject(ToastrService);
 
@@ -30,6 +32,7 @@ export class ListOfHolidaysComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.addPage = 0;
     this.route.data.subscribe((data) => {
       const result = data['hr'] as HolidayGalleryResponse | null | undefined;
       if (result) {
@@ -46,21 +49,26 @@ export class ListOfHolidaysComponent implements OnInit {
   }
 
   showAddHoliday() {
-    // show the add-image child
+    if (this.addPage == 1) return true;
+    else return false;
   }
 
   showDeleteHoliday(id: number) {
-    this.holidayService.deleteHoliday(id).subscribe((result) => {
-      if (result === 1) {
-        this.listOfHolidays = this.listOfHolidays.filter(
-          (holiday) => holiday.id !== id,
-        );
-        this.holidays_paginated.items = this.holidays_paginated.items.filter(
-          (holiday) => holiday.id !== id,
-        );
-      } else {
-        this.toast.error('Could not be deleted');
-      }
-    });
+    this.holidayService.deleteHoliday(id).subscribe({
+  next: () => {
+    this.listOfHolidays = this.listOfHolidays.filter(
+      holiday => holiday.id !== id,
+    );
+    this.holidays_paginated.items =
+      this.holidays_paginated.items.filter(holiday => holiday.id !== id);
+  },
+  error: () => this.toast.error('Could not be deleted'),
+});
+  }
+
+  displayAddHoliday(){this.addPage = 1;}
+
+  receiveData(message: string){
+    if (message == 'hide') this.addPage = 0;
   }
 }

@@ -27,7 +27,6 @@ import { Holiday } from './holiday/holiday';
 import { holidayResolver } from './_resolvers/holidayResolver';
 import { Fullholidayimage } from './holiday/fullholidayimage/fullholidayimage';
 import { ListOfHolidaysComponent } from './Admin/Holidays/list-of-holidays/list-of-holidays.component';
-import { AddHoliday } from './Admin/Holidays/add-holiday/add-holiday';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

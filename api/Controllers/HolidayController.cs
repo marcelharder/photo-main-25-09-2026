@@ -66,6 +66,33 @@ public class HolidayController : ControllerBase
         }
     }
 
+    [HttpPost("addHoliday")]
+    public async Task<IActionResult> AddHoliday(
+        [FromBody] Holiday holiday,
+        CancellationToken cancellationToken)
+    {
+        if (holiday is null)
+        {
+            return BadRequest("Request body is required.");
+        }
+
+        try
+        {
+            var result = await _holidayService.CreateHoliday(holiday, cancellationToken);
+            return Ok(result);
+        }
+        catch (HttpRequestException ex) when (ex.StatusCode.HasValue)
+        {
+            return StatusCode((int)ex.StatusCode.Value, ex.Message);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode(
+                StatusCodes.Status503ServiceUnavailable,
+                $"Holiday service unavailable: {ex.Message}");
+        }
+    }
+
     [HttpDelete("deleteHoliday/{id}")]
     public async Task<IActionResult> DeleteHoliday(
     int id,
@@ -75,7 +102,7 @@ public class HolidayController : ControllerBase
         {
             var result = await _holidayService.DeleteHoliday(id, cancellationToken);
 
-            return result;
+            return NoContent();
         }
         catch (HttpRequestException ex) when (
             ex.StatusCode == HttpStatusCode.NotFound)

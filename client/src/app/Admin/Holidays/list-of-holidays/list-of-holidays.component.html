@@ -1,8 +1,9 @@
+@if(!showAddHoliday()){
 <div class="card">
   <div class="card-header">
     <div class="row">
         <div class="col-sm-6"><h3>List of holidays</h3></div>
-        <div class="col-sm-6"><button class="btn btn-primary" style="float: right;" (click)="showAddHoliday()">Add holiday</button></div>
+        <div class="col-sm-6"><button class="btn btn-primary" style="float: right;" (click)="displayAddHoliday()">Add holiday</button></div>
     </div>
     
     </div>
@@ -18,5 +19,14 @@
   </div>
   <div class="card-footer"></div>
 </div>
-
+}
+@if(showAddHoliday()){
+<div class="card" >
+  <div class="card-header"></div>
+  <div class="card-body">
+    <app-add-holiday (dataEmitter)="receiveData($event)"></app-add-holiday>
+  </div>
+  <div class="card-footer"></div>
+</div>
+}
 

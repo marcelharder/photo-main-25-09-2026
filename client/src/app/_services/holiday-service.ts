@@ -26,7 +26,7 @@ export class HolidayService {
   }
 
   deleteHoliday(id: number) {
-    return this.http.delete<number>(`${this.baseUrl}deleteHoliday/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}Holiday/deleteHoliday/${id}`);
   }
 
 
